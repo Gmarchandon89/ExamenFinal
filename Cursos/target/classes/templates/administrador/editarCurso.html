@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head data-th-replace="parts/header :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div data-th-replace="parts/header :: menu"></div>
+
+
+<div class="container">
+
+    <div class="card bg-light mt-5">
+        <div class="card-header bg-dark text-white" data-th-text="${titulo}"></div>
+        <div class="card-body">
+
+            <form   data-th-action="@{/cursos/editar}"
+                    method="post"
+                    enctype="multipart/form-data"
+                    data-th-object="${cursos}">
+                <input type="hidden" data-th-field="*{id}" >
+                <div class="form-group row">
+                    <label class ="col-md-2" for="nombre">Nombre:</label>
+                    <input type="text" class="form-control"
+                           id="nombre" placeholder="Nombre del curso"
+                           data-th-field="*{nombre}" />
+                </div>
+                <div class="form-group row">
+                    <label class ="col-md-2" for="descripcion">Descripción:</label>
+                    <input type="text" class="form-control"
+                           id="descripcion" placeholder="Descripcion del curso"
+                           data-th-field="*{descripcion}" />
+                </div>
+                <div class="form-group row">
+                    <label class ="col-md-2" for="contenido">Contenido:</label>
+                    <input type="text" class="form-control"
+                           id="contenido" placeholder="contenido del curso"
+                           data-th-field="*{contenido}" />
+                </div>
+                <div class="form-group row">
+                    <label class ="col-md-2" for="fechaInicio">Fecha de inicio:</label>
+                    <input type="date" class="form-control"
+                           id="fechaInicio"
+                           data-th-field="*{fechaInicio}" />
+                </div>
+                <div class="form-group row">
+                    <label class ="col-md-2" for="fechaFin">Fecha de Término:</label>
+                    <input type="date" class="form-control"
+                           id="fechaFin"
+                           data-th-field="*{fechaFin}" />
+                </div>
+                <div class="form-group row">
+                    <label class ="col-md-2" for="cupos">Cupos:</label>
+                    <input type="number" class="form-control"
+                           id="cupos"
+                           data-th-field="*{cuposTotales}" />
+                </div>
+                <div class="form-group row">
+                    <label class ="col-md-2" data-th-for="imagen">Imagen del Curso:</label>
+                    <input type="text" name="imagen" class="form-control" data-th-field="*{imagen}"/>
+                </div>
+                <div class="card-footer bg-dark">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Registrar" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

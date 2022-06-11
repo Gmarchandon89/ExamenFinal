@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head data-th-replace="parts/header :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div data-th-replace="parts/header :: menu"></div>
+    <div class="container" >
+        <div class="row p-2 mt-5">
+           <div class="col-md-4" data-th-each="curso : ${cursos}">
+                <div class="card text-center">
+                    <img data-th-src="${curso.imagen}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" data-th-text="${curso.nombre}"></h5>
+                        <p class="card-text" data-th-text="${curso.descripcion}"></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" data-th-text="'Fecha de inicio: ' + ${#dates.format(curso.fechaInicio,'dd/MM/yyyy')}"></li>
+                        <li class="list-group-item" data-th-text="'Fecha de término: ' + ${#dates.format(curso.fechaFin,'dd/MM/yyyy')}"></li>
+                        <li class="list-group-item" data-th-text="'Cupos: ' + ${curso.cuposTotales}"></li>
+                        <li class="list-group-item" data-th-text="'Disponibles: ' + ${curso.cuposDisponibles}"></li>
+                    </ul>
+                    <div class="card-body">
+                        <div data-sec-authorize="!hasAuthority('ADMIN')" data-th-if="${cursoId==null && curso.cuposDisponibles>0 && curso.fechaInicio.after(#dates.createNow())}">
+                            <a data-th-href="@{/postular/{id}(id=${curso.id})}" class="btn btn-success">Postular</a>
+                        </div>
+                        <div data-sec-authorize="hasAuthority('ALUMNO')">
+                            <a data-th-href="@{/cursoAlumno/{id}(id=${curso.id})}" class="btn btn-primary">Ver Detalles</a>
+                        </div>
+                        <div data-sec-authorize="!hasAuthority('ALUMNO')">
+                            <a data-th-href="@{/curso/{id}(id=${curso.id})}" class="btn btn-primary">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </div>
+</body>
+</html>

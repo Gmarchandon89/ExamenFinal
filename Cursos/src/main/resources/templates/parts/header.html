@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head data-th-fragment="head(titulo)">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-th-replace="${titulo}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</head>
+<body>
+<div data-th-fragment="menu">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" >Cursos Online</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-th-href="@{/}">Inicio</a>
+                    </li>
+                    <li class="nav-item" data-sec-authorize="!hasAuthority('ALUMNO')">
+                        <a class="nav-link" data-th-href="@{/cursos}">Cursos Disponibles</a>
+                    </li>
+                    <li class="nav-item" data-sec-authorize="hasAuthority('ALUMNO')">
+                        <a class="nav-link" data-th-href="@{/cursosAlumno}">Cursos Disponibles</a>
+                    </li>
+                    <li class="nav-item" data-sec-authorize="!isAuthenticated()">
+                        <a class="nav-link" data-th-href="@{/alumno/registro}">Registrarse</a>
+                    </li>
+                    <li class="nav-item" data-sec-authorize="hasAuthority('ALUMNO')"> <!-- en la docu oficial dice HasRole pero no sirve -->
+                        <a class="nav-link" data-th-href="@{/panelUsuario}">Mi Panel</a>
+                    </li>
+                    <li class="nav-item" data-sec-authorize="hasAuthority('ADMIN')"> <!-- en la docu oficial dice HasRole pero no sirve -->
+                        <a class="nav-link" data-th-href="@{/cursos/crear}">Crear Curso</a>
+                    </li>
+                    <li class="nav-item" data-sec-authorize="hasAuthority('ADMIN')"> <!-- en la docu oficial dice HasRole pero no sirve -->
+                        <a class="nav-link" data-th-href="@{/cursos/tabla}">Tabla de Cursos</a>
+                    </li>
+                    <li class="nav-item" data-sec-authorize="!isAuthenticated()"> <!-- EL SIMBOLO ! ES NEGACION -->
+                        <a class="nav-link" data-th-href="@{/ingreso}">Iniciar Sesion</a>
+                    </li>
+                    <li class="nav-item" data-sec-authorize="isAuthenticated()">
+                        <a class="nav-link" data-th-href="@{/salir}">Cerrar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</body>
+</html>

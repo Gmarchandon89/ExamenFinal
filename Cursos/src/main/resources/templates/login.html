@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head data-th-replace="parts/header :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>Ingreso</title>
+</head>
+<body>
+    <div data-th-replace="parts/header :: menu"></div>
+
+    <div class="container">
+        <div class="row justify-content-center mt-5 p-3">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Ingreso
+                    </div>
+                    <div class="card-body">
+                        <form data-th-action="@{/ingreso}" method="post">
+                            <div class="col-md-12">
+                                <label class="form-label">Usuario</label>
+                                <input type="text" name="username" class="form-control" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Contraseña</label>
+                                <input type="password" name="password" class="form-control" required>
+                            </div>
+                            <br />
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary">Ingresar</button>
+                            </div>
+                            <div data-th-if="${param.error}" style="color: red; background: black">
+                                Usuario y/o contraseña incorrectos!!!
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

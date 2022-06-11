@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head data-th-replace="parts/header :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div data-th-replace="parts/header :: menu"></div>
+
+    <div class="card mb-3" data-th-if="${cursos!=null}">
+        <div class="row justify-content-center mt-5 p-3">
+            <h5>Panel Estudiante</h5>
+            <div class="col-md-4" >
+                <img data-th-src="${cursos.imagen}" class="img-fluid rounded-start" >
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title" data-th-text="${cursos.nombre}"></h5>
+                    <p class="card-text"data-th-text="${cursos.descripcion}"></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" data-th-text="${#dates.format(cursos.fechaInicio,'dd/MM/yyyy')}"></li>
+                    <li class="list-group-item" data-th-text="${#dates.format(cursos.fechaFin,'dd/MM/yyyy')}"></li>
+                 </ul>
+            </div>
+        </div>
+    </div>
+    <div data-th-if="${cursos==null}">
+        <h5>Panel Estudiante</h5>
+        <p>No estás inscrito en ningún curso, puedes revisar nuestros cupos desde <a data-th-href="@{/cursos}">aquí.</a></p>
+    </div>
+
+</body>
+</html>

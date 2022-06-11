@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head data-th-replace="parts/header :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div data-th-replace="parts/header :: menu"></div>
+    <div class="row justify-content-center mt-5 p-2">
+        <div class="card bg-light col-md-10">
+            <div class="card-header bg-dark text-white" data-th-text="${titulo}"></div>
+            <div class="card-body">
+                <div class="col-md-12">
+                    <form class="row needs-validation" novalidate data-th-action="@{/alumno/registro}"
+                          method="post" data-th-object="${alumno}">
+                        <div class="col-md-4">
+                            <label data-th-for="rut" class="form-label">RUT</label>
+                            <input type="text" class="form-control" data-th-field="*{rut}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label data-th-for="nombre1" class="form-label">Primer Nombre</label>
+                            <input type="text" class="form-control" data-th-field="*{nombre1}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label data-th-for="nombre2" class="form-label">Segundo Nombre</label>
+                            <input type="text" class="form-control"  data-th-field="*{nombre2}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label data-th-for="apellido1" class="form-label">Primer Apellido</label>
+                            <input type="text" class="form-control"  data-th-field="*{apellido1}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label data-th-for="apellido2" class="form-label">Segundo Apellido</label>
+                            <input type="text" class="form-control" data-th-field="*{apellido2}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label data-th-for="edad" class="form-label">Edad</label>
+                            <input type="number" class="form-control" data-th-field="*{edad}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label data-th-for="direccion" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" data-th-field="*{direccion}" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label data-th-for="region" class="form-label">Región</label>
+                            <select class="form-select"  data-th-field="*{region}" required>
+                                <option value="0">Seleccione región...</option>
+                                <option data-th-each="reg: ${regiones}" data-th-value="${reg.id}" data-th-text="${reg.descripcion}"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label data-th-for="telefono" class="form-label">Teléfono</label>
+                            <input type="number" class="form-control" data-th-field="*{telefono}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label data-th-for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" data-th-field="*{email}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label data-th-for="contrasena" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" data-th-field="*{contrasena}" required>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Registrarse</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+    </div>
+</body>
+</html>
